@@ -6,9 +6,9 @@
         {
             Console.WriteLine("Welcome to the Mood Analyzer Problem....");
 
-            MoodAnalyzer mood = new MoodAnalyzer();
             string message = "I am in Any Mood";
-            Console.WriteLine(mood.AnalyzeMood(message));
+            MoodAnalyzer mood = new MoodAnalyzer(message);
+            Console.WriteLine(mood.AnalyzeMood());
         }
     }
 }
