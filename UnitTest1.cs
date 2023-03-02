@@ -5,7 +5,6 @@ namespace MoodAnalyzerProblemTest
     [TestClass]
     public class UnitTest1
     {
-        MoodAnalyzer moodAnalyzer = new MoodAnalyzer("I am in Any Mood");
 
         //-------------Test Case 1.1---------------//
         [TestMethod]
@@ -13,6 +12,7 @@ namespace MoodAnalyzerProblemTest
         {
             //Arrange
             string expected = "SAD";
+            MoodAnalyzer moodAnalyzer = new MoodAnalyzer(expected);
 
             //Act
             string actual = moodAnalyzer.AnalyzeMood();
@@ -28,6 +28,7 @@ namespace MoodAnalyzerProblemTest
         {
             //Arrange
             string expected = "HAPPY";
+            MoodAnalyzer moodAnalyzer = new MoodAnalyzer(expected);
 
             //Act
             string actual = moodAnalyzer.AnalyzeMood();
@@ -51,6 +52,38 @@ namespace MoodAnalyzerProblemTest
 
             //Assert
             Assert.AreEqual(expected, actual);
+        }
+
+
+        //--------------Test Case 3.1-----------------//
+        [TestMethod]
+        public void GivenNullMoodShouldThrowMoodAnalysisException()
+        {
+            try
+            {
+                string message = null;
+                MoodAnalyzer moodAnalyzer = new MoodAnalyzer(message);
+                string actual = moodAnalyzer.AnalyzeMood();
+            }
+            catch (CustomException ex)
+            {
+                Assert.AreEqual("Mood should not be null", ex.Message);
+            }
+        }
+        //---------Test Case 3.2---------------//
+        [TestMethod]
+        public void GivenEmptyMoodShouldThrowMoodAnalysisException()
+        {
+            try
+            {
+                string message = "";
+                MoodAnalyzer moodAnalyzer = new MoodAnalyzer(message);
+                string actual = moodAnalyzer.AnalyzeMood();
+            }
+            catch (CustomException ex)
+            {
+                Assert.AreEqual("Mood should not be empty", ex.Message);
+            }
         }
     }
 }

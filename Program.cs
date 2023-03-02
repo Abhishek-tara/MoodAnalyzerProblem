@@ -6,7 +6,7 @@
         {
             Console.WriteLine("Welcome to the Mood Analyzer Problem....");
 
-            string message = null;
+            string message = "";
             MoodAnalyzer mood = new MoodAnalyzer(message);
             Console.WriteLine(mood.AnalyzeMood());
         }
