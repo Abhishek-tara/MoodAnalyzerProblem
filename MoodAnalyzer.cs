@@ -24,7 +24,7 @@ namespace MoodAnalyzerProblem
                     throw new CustomException(CustomException.ExceptionType.EMPTY_MESSAGE, "Mood should not be empty");
                 }
 
-                else if (this.message.Contains("Sad"))
+                if (this.message.Contains("Sad"))
                 {
                     return "SAD";
                 }
