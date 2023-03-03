@@ -11,6 +11,7 @@ namespace MoodAnalyzerProblemTest
         public void GivenSadMoodShouldReturnSAD()
         {
             //Arrange
+            String message = "I am Sad";
             string expected = "SAD";
             MoodAnalyzer moodAnalyzer = new MoodAnalyzer(expected);
 
@@ -85,5 +86,23 @@ namespace MoodAnalyzerProblemTest
                 Assert.AreEqual("Mood should not be empty", ex.Message);
             }
         }
+
+        //---------Test Case 4---------------//
+        [TestMethod]
+        public void GivenMoodAnalyzeClasssNameShouldReturnMoodAnalyzeObject()
+        {
+            string message = null;
+            object expected = new MoodAnalyzer(message);
+            object obj = MoodAnalyzerFactory.CreateMoodAnalyze("MoodAnalyzerProblem.MoodAnalyzer", "MoodAnalyzer");
+            expected.Equals(obj);
+        }
+
+
+
+
+
+
+
+
     }
 }
