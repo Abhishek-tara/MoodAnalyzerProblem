@@ -93,7 +93,7 @@ namespace MoodAnalyzerProblemTest
         {
             string message = null;
             object expected = new MoodAnalyzer(message);
-            object obj = MoodAnalyzerFactory.CreateMoodAnalyze("MoodAnalyzerProblem.MoodAnalyzer", "MoodAnalyzer");
+            object obj = MoodAnalyzerReflector.CreateMoodAnalyze("MoodAnalyzerProblem.MoodAnalyzer", "MoodAnalyzer");
             expected.Equals(obj);
         }
         //--------Test Case 5--------------//
@@ -101,8 +101,17 @@ namespace MoodAnalyzerProblemTest
         public void GivenMoodAnalyzeClassNameShouldReturnObjectUsingParameterizedConstructor()
         {
             object expected = new MoodAnalyzer("HAPPY");
-            object obj = MoodAnalyzerFactory.CreatemoodAnalyzeUsingParameterizedConstructor("MoodAnalyzerProblem.MoodAnalyzer", "MoodAnalyzer", "HAPPY");
+            object obj = MoodAnalyzerReflector.CreatemoodAnalyzeUsingParameterizedConstructor("MoodAnalyzerProblem.MoodAnalyzer", "MoodAnalyzer", "HAPPY");
             expected.Equals(obj);
+        }
+
+        //----------Test case 6------------//
+        [TestMethod]
+        public void GivenHappyMoodShouldReturnHappy()
+        {
+            string expected = "HAPPY";
+            string actual = MoodAnalyzerReflector.InvokeAnalyzeMood("HAPPY", "AnalyzeMood");
+            Assert.AreEqual(expected, actual);
         }
 
 

@@ -8,8 +8,25 @@ using System.Threading.Tasks;
 
 namespace MoodAnalyzerProblem
 {
-    public class MoodAnalyzerFactory
+    public class MoodAnalyzerReflector
     {
+        public static string InvokeAnalyzeMood(string message, string methodName)
+        {
+            try
+            {
+                Type type = Type.GetType("MoodAnalyzerProblem.MoodAnalyzer");
+                object moodanalyzeObject = MoodAnalyzerReflector.CreatemoodAnalyzeUsingParameterizedConstructor("MoodAnalyzerProblem.MoodAnalyzer", "MoodAnalyzer", message);
+
+                MethodInfo analyzeMoodInfo = type.GetMethod(methodName);
+                object mood = analyzeMoodInfo.Invoke(moodanalyzeObject, null);
+                return mood.ToString();
+            }
+            catch (NullReferenceException)
+            {
+                throw new CustomException(CustomException.ExceptionType.NO_SUCH_METHOD, "Method is Not Found");
+            }
+        }
+
         public static object CreatemoodAnalyzeUsingParameterizedConstructor(string className, string constructorName, string message)
         {
             Type type = typeof(MoodAnalyzer);
